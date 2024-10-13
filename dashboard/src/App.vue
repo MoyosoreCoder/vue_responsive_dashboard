@@ -4,19 +4,21 @@
     <!-- Sidebar on the side -->
     <main>
       <router-view />
-      <!-- Routed components displayed here -->
+      <my-chart />
     </main>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import Sidebar from "./components/Sidebar.vue"; // Import the Sidebar component
+import MyChart from "./components/MyChart.vue";
+import Sidebar from "./components/Sidebar.vue";
 
 export default defineComponent({
   name: "App",
   components: {
-    Sidebar, // Register the Sidebar component
+    Sidebar,
+    MyChart, // Register the Sidebar component
   },
 });
 </script>
