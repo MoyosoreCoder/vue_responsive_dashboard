@@ -1,70 +1,71 @@
 <template>
-  <div>
-    <canvas ref="chartCanvas"></canvas>
+  <div class="chart-container">
+    <canvas id="bar-chart"></canvas>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref } from "vue";
-import { Chart, registerables } from "chart.js";
+import { defineComponent, onMounted } from "vue";
+import {
+  Chart,
+  BarController,
+  BarElement,
+  CategoryScale,
+  LinearScale,
+} from "chart.js";
 
-Chart.register(...registerables);
+Chart.register(BarController, BarElement, CategoryScale, LinearScale);
 
 export default defineComponent({
-  name: "MyChart",
+  name: "ChartComponent",
   setup() {
-    const chartCanvas = ref<HTMLCanvasElement | null>(null);
-
     onMounted(() => {
-      if (chartCanvas.value) {
-        new Chart(chartCanvas.value, {
-          type: "bar", // Specify the chart type (bar, line, pie, etc.)
-          data: {
-            labels: ["January", "February", "March", "April", "May"],
-            datasets: [
-              {
-                label: "Sales",
-                data: [12, 19, 3, 5, 2],
-                backgroundColor: [
-                  "rgba(255, 99, 132, 0.2)",
-                  "rgba(54, 162, 235, 0.2)",
-                  "rgba(255, 206, 86, 0.2)",
-                  "rgba(75, 192, 192, 0.2)",
-                  "rgba(153, 102, 255, 0.2)",
-                ],
-                borderColor: [
-                  "rgba(255, 99, 132, 1)",
-                  "rgba(54, 162, 235, 1)",
-                  "rgba(255, 206, 86, 1)",
-                  "rgba(75, 192, 192, 1)",
-                  "rgba(153, 102, 255, 1)",
-                ],
-                borderWidth: 1,
+      const ctx = document.getElementById("bar-chart") as HTMLCanvasElement;
+
+      new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: ["January", "February", "March", "April", "May"],
+          datasets: [
+            {
+              label: "Sales",
+              data: [12, 19, 3, 5, 2],
+              backgroundColor: "rgba(75, 192, 192, 0.6)",
+            },
+          ],
+        },
+        options: {
+          scales: {
+            x: {
+              grid: {
+                display: false, // Hide the grid lines for the x-axis
               },
-            ],
-          },
-          options: {
-            scales: {
-              y: {
-                beginAtZero: true,
+            },
+            y: {
+              grid: {
+                display: false, // Hide the grid lines for the y-axis
+              },
+              ticks: {
+                beginAtZero: true, // Start the y-axis at 0
               },
             },
           },
-        });
-      }
+          responsive: true, // Make the chart responsive
+          maintainAspectRatio: false, // Allow the chart size to change dynamically
+        },
+      });
     });
 
-    return {
-      chartCanvas,
-    };
+    return {};
   },
 });
 </script>
 
 <style scoped>
-/* Add any necessary styling for the chart */
-canvas {
-  width: 100%;
-  height: 400px;
+.chart-container {
+  position: relative;
+  width: 80%; /* Adjust the width of the chart */
+  height: 400px; /* Adjust the height of the chart */
+  margin: 0 auto; /* Center the chart */
 }
 </style>
