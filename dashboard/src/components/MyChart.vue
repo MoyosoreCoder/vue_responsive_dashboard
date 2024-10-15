@@ -64,7 +64,7 @@ export default defineComponent({
 <style scoped>
 .chart-container {
   position: relative;
-  width: 80%; /* Adjust the width of the chart */
+  width: 60%; /* Adjust the width of the chart */
   height: 400px; /* Adjust the height of the chart */
   margin: 0 auto; /* Center the chart */
 }

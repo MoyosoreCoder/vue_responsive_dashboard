@@ -1,10 +1,10 @@
 <template>
-  <aside>
+  <aside :class="`${is_expanded && 'is_expanded'}`">
     <div class="logo">
       <img src="../assets/vue.svg" alt="Vue" />
     </div>
     <div class="menu-toggle-wrap">
-      <button class="menu-toggle">
+      <button class="menu-toggle" @click="ToggleMenu">
         <span class="material-icons">keyboard_double_arrow_right</span>
       </button>
     </div>
@@ -18,6 +18,12 @@ import { defineComponent } from "vue";
 export default defineComponent({
   setup() {
     // Add any reactive properties or methods here if needed
+    import { ref } from "vue";
+    const is_expanded = ref(false);
+    const ToggleMenu = () => {
+      is_expanded.value = !is_expanded;
+    };
+
     return {};
   },
 });
