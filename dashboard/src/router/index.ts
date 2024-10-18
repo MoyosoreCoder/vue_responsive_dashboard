@@ -1,24 +1,25 @@
-// src/router/index.ts
-import { createRouter, createWebHistory } from "vue-router"; // Importing router functions
-import Home from "@/views/Home.vue"; // Import the Home component
-import About from "@/views/About.vue"; // Import the About component
+import { createRouter, createWebHistory } from "vue-router";
+import Home from "@/views/Home.vue";
+import About from "@/views/About.vue";
 
 // Define the routes
 const routes = [
   {
-    path: "/", // Path for the home route
-    component: Home, // The component to render for this path
+    path: "/",
+    component: Home,
+    meta: { showChart: true }, // Metadata to show the chart on the Home route
   },
   {
-    path: "/about", // Path for the about route
-    component: About, // The component to render for this path
+    path: "/about",
+    component: About,
+    meta: { showChart: false }, // Metadata to hide the chart on the About route
   },
 ];
 
 // Create the router instance
 const router = createRouter({
-  history: createWebHistory(), // Use HTML5 History Mode
-  routes, // Assign the defined routes
+  history: createWebHistory(),
+  routes,
 });
 
 export default router;

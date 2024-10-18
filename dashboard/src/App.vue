@@ -4,7 +4,6 @@
     <!-- Sidebar on the side -->
     <main>
       <router-view />
-      <my-chart />
     </main>
   </div>
 </template>
