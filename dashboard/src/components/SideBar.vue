@@ -80,7 +80,7 @@ aside {
   &.is_expanded {
     width: var(--sidebar-width); /* Expanded width */
     .menu-toggle-wrap {
-      //top: -3rem;
+      top: -3rem;
       .menu-toggle-wrap {
         transform: rotate(-90deg);
         top: -3rem;
